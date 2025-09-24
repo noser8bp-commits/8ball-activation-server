@@ -6,6 +6,7 @@ const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Mohamednoserkol123@';
 
 // Middleware
 app.use(cors());
@@ -99,7 +100,7 @@ app.post('/api/keys/list', async (req, res) => {
         const { adminPassword } = req.body;
         
         // تغيير كلمة المرور هنا
-        if (adminPassword !== 'Mohamednoserkol123@') {
+        if (adminPassword !== ADMIN_PASSWORD) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -125,7 +126,7 @@ app.post('/api/keys/add', async (req, res) => {
     try {
         const { adminPassword, key, description } = req.body;
         
-        if (adminPassword !== 'Mohamednoserkol123@') {
+        if (adminPassword !== ADMIN_PASSWORD) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -174,7 +175,7 @@ app.post('/api/keys/delete', async (req, res) => {
     try {
         const { adminPassword, key } = req.body;
         
-        if (adminPassword !== 'Mohamednoserkol123@') {
+        if (adminPassword !== ADMIN_PASSWORD) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -203,7 +204,7 @@ app.post('/api/keys/toggle', async (req, res) => {
     try {
         const { adminPassword, key } = req.body;
         
-        if (adminPassword !== 'Mohamednoserkol123@') {
+        if (adminPassword !== ADMIN_PASSWORD) {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
