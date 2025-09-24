@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Database file
 const DB_FILE = path.join(__dirname, 'keys.json');
@@ -39,6 +39,15 @@ async function writeDB(data) {
 function generateKey() {
     return crypto.randomBytes(16).toString('hex').toUpperCase();
 }
+
+// Serve admin page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+app.get('/admin.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
 
 // API Routes
 
