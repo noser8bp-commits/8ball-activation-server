@@ -99,7 +99,7 @@ app.post('/api/keys/list', async (req, res) => {
         const { adminPassword } = req.body;
         
         // تغيير كلمة المرور هنا
-        if (adminPassword !== 'admin123') {
+        if (adminPassword !== 'Mohamednoserkol123@') {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -125,7 +125,7 @@ app.post('/api/keys/add', async (req, res) => {
     try {
         const { adminPassword, key, description } = req.body;
         
-        if (adminPassword !== 'admin123') {
+        if (adminPassword !== 'Mohamednoserkol123@') {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -174,7 +174,7 @@ app.post('/api/keys/delete', async (req, res) => {
     try {
         const { adminPassword, key } = req.body;
         
-        if (adminPassword !== 'admin123') {
+        if (adminPassword !== 'Mohamednoserkol123@') {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
@@ -203,7 +203,7 @@ app.post('/api/keys/toggle', async (req, res) => {
     try {
         const { adminPassword, key } = req.body;
         
-        if (adminPassword !== 'admin123') {
+        if (adminPassword !== 'Mohamednoserkol123@') {
             return res.status(401).json({ 
                 success: false, 
                 message: 'Invalid admin password' 
