@@ -107,18 +107,11 @@ app.post('/api/check', async (req, res) => {
     }
 });
 
-// Get all keys (protected with admin password)
+// Get all keys (NO PASSWORD REQUIRED)
 app.post('/api/keys/list', async (req, res) => {
     try {
-        const { adminPassword } = req.body;
-        
-        // تغيير كلمة المرور هنا
-        if (adminPassword !== ADMIN_PASSWORD) {
-            return res.status(401).json({ 
-                success: false, 
-                message: 'Invalid admin password' 
-            });
-        }
+        // Password check removed - public access
+        // const { adminPassword } = req.body;
 
         const db = await readDB();
         res.json({ 
@@ -134,17 +127,11 @@ app.post('/api/keys/list', async (req, res) => {
     }
 });
 
-// Add new key
+// Add new key (NO PASSWORD REQUIRED)
 app.post('/api/keys/add', async (req, res) => {
     try {
-        const { adminPassword, key, description } = req.body;
-        
-        if (adminPassword !== ADMIN_PASSWORD) {
-            return res.status(401).json({ 
-                success: false, 
-                message: 'Invalid admin password' 
-            });
-        }
+        const { key, description } = req.body;
+        // Password check removed - public access
 
         const db = await readDB();
         
@@ -183,17 +170,11 @@ app.post('/api/keys/add', async (req, res) => {
     }
 });
 
-// Delete key
+// Delete key (NO PASSWORD REQUIRED)
 app.post('/api/keys/delete', async (req, res) => {
     try {
-        const { adminPassword, key } = req.body;
-        
-        if (adminPassword !== ADMIN_PASSWORD) {
-            return res.status(401).json({ 
-                success: false, 
-                message: 'Invalid admin password' 
-            });
-        }
+        const { key } = req.body;
+        // Password check removed - public access
 
         const db = await readDB();
         db.keys = db.keys.filter(k => k.key !== key);
@@ -212,17 +193,11 @@ app.post('/api/keys/delete', async (req, res) => {
     }
 });
 
-// Toggle key status
+// Toggle key status (NO PASSWORD REQUIRED)
 app.post('/api/keys/toggle', async (req, res) => {
     try {
-        const { adminPassword, key } = req.body;
-        
-        if (adminPassword !== ADMIN_PASSWORD) {
-            return res.status(401).json({ 
-                success: false, 
-                message: 'Invalid admin password' 
-            });
-        }
+        const { key } = req.body;
+        // Password check removed - public access
 
         const db = await readDB();
         const keyData = db.keys.find(k => k.key === key);

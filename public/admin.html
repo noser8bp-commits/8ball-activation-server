@@ -200,8 +200,8 @@
             <p>إدارة مفاتيح تفعيل تطبيق 8 Ball Pool</p>
         </div>
 
-        <!-- Login Form -->
-        <div id="loginForm" class="login-form">
+        <!-- Login Form (Hidden) -->
+        <div id="loginForm" class="login-form hidden">
             <h2>تسجيل الدخول</h2>
             <div class="form-group">
                 <label>كلمة مرور المدير</label>
@@ -211,7 +211,7 @@
         </div>
 
         <!-- Admin Panel -->
-        <div id="adminPanel" class="hidden">
+        <div id="adminPanel">
             <!-- Statistics -->
             <div class="stats">
                 <div class="stat-card">
@@ -258,40 +258,25 @@
                 </table>
             </div>
 
-            <button onclick="logout()" class="btn-secondary" style="margin-top: 20px;">تسجيل خروج</button>
+            <!-- Removed logout button since no password is needed -->
         </div>
     </div>
 
     <script>
-        let currentPassword = '';
+        // Auto-load without password
+        let currentPassword = 'public_access';
+
+        // Load keys automatically when page loads
+        window.onload = function() {
+            loadKeys();
+        };
 
         function login() {
-            const password = document.getElementById('adminPassword').value;
-            currentPassword = password;
-            
-            // Test login by fetching keys
-            fetch('/api/keys/list', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ adminPassword: password })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('loginForm').classList.add('hidden');
-                    document.getElementById('adminPanel').classList.remove('hidden');
-                    loadKeys();
-                } else {
-                    alert('كلمة المرور خاطئة!');
-                }
-            });
+            // Not used anymore
         }
 
         function logout() {
-            currentPassword = '';
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('adminPanel').classList.add('hidden');
+            // Keep for future use if needed
         }
 
         function loadKeys() {
